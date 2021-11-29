@@ -1,27 +1,14 @@
-let title
-let screens
-let screenPrice
-let rollback
-let fullPrice
-let adaptive
+let title = 'project'
+let screens = 'simple, complex, interactive'
+let screenPrice = 777
+let rollback = 99
+let fullPrice = 1000
+let adaptive = true
 
-
-title = 'project'
-screens = 'simple, complex, interactive'
-screenPrice = 777
-rollback = 99
-fullPrice = 1000
-adaptive = true
-
-console.log(title);
-console.log(fullPrice);
-console.log(adaptive);
+console.log(typeof title);
+console.log(typeof fullPrice);
+console.log(typeof adaptive);
 console.log(screens.length);
 console.log('Price layout screens ' + screenPrice + 'USD' + ' Website development cost ' + fullPrice + 'USD');
-
-screens.toLowerCase()
-
+console.log(screens.toLowerCase().split(','));
 console.log('Brokers fee ' + fullPrice * (rollback/100));
-
-alert('any text')
-console.log('other any');
