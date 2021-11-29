@@ -1,8 +1,8 @@
-let title = 'project'
-let screens = 'simple, complex, interactive'
-let screenPrice = 777
-let rollback = 99
-let fullPrice = 1000
+const title = 'project'
+const screens = 'simple, complex, interactive'
+const screenPrice = 777
+const rollback = 99
+const fullPrice = 1000
 let adaptive = true
 
 console.log(typeof title);
