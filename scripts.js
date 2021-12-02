@@ -15,44 +15,44 @@ let allServicePrices;
 
 const showTypeOf = function(variable) {
     console.log(variable, typeof variable);
-}
+};
 
 const getAllServicePrices = function() {
-    return service1Price + service2Price
-}
+    return service1Price + service2Price;
+};
 allServicePrices = getAllServicePrices();
 
 function getFullPrice() {
-    return screenPrice + allServicePrices
+    return screenPrice + allServicePrices;
 }
 fullPrice = getFullPrice();
 
 const getTitle = function() {
-    return title.trim().charAt(0).toLocaleUpperCase() + title.trim().slice(1).toLowerCase()
-}
+    return title.trim().charAt(0).toLocaleUpperCase() + title.trim().slice(1).toLowerCase();
+};
 
 const getServicePercentPrice = function() {
     return fullPrice - (fullPrice * (rollback/100))
-}
+};
 servicePercentPrice = getServicePercentPrice();
 
 const getRollbackMessage = function() {
     switch (true) {
         case fullPrice >= 30000:
-            return 'You are eligible for 10% discount'
+            return 'You are eligible for 10% discount';
         case fullPrice >= 15000:
-            return 'You are eligible for 5% discount'
+            return 'You are eligible for 5% discount';
         case fullPrice < 15000:
-            return 'You are not eligible for discount'
+            return 'You are not eligible for discount';
         default:
-            return 'Something went wrong'
+            return 'Something went wrong';
         }
-}
+};
 
 
 showTypeOf(title);
 showTypeOf(screenPrice);
 showTypeOf(adaptive);
 console.log(getRollbackMessage());
-console.log(screens.split(''));
+console.log(screens.split(','));
 console.log(servicePercentPrice);
