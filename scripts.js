@@ -3,36 +3,56 @@
 const title = prompt("What is the name of your project?");
 const screens = prompt('What types of screens have to be developed', 'simple, complex or interactive');
 const screenPrice = +prompt('What is the price for this project?');
-const rollback = 99;
+const rollback = 30;
 const adaptive = confirm('Is adaptive needed');
 const service1 = prompt('Any extra services needed?');
 const service1Price = +prompt('How much it will be cost?', 'price in USD');
 const service2 = prompt('Any extra services needed?');
 const service2Price = +prompt('How much it will be cost?', 'price in USD');
-const fullPrice = screenPrice + service1Price + service2Price;
-const servicePercentPrice = fullPrice * (rollback/100);
+let servicePercentPrice;
+let fullPrice;
+let allServicePrices;
 
-console.log(servicePercentPrice);
-
-switch (true) {
-case fullPrice >= 30000:
-    console.log('You are eligible for 10% discount');
-    break;
-case fullPrice >= 15000:
-    console.log('You are eligible for 5% discount');
-    break;
-case fullPrice < 15000:
-    console.log('You are not eligible for discount');
-    break;
-default:
-    console.log('Something went wrong');  
+const showTypeOf = function(variable) {
+    console.log(variable, typeof variable);
 }
 
-console.log(typeof title);
-console.log(typeof fullPrice);
-console.log(typeof adaptive);
-console.log(screens.length);
-console.log('Price layout screens ' + screenPrice + 'USD website development cost ' + fullPrice + 'USD');
-console.log(screens.toLowerCase().split(','));
-console.log('Brokers fee ' + servicePercentPrice);
-console.log(adaptive);
+const getAllServicePrices = function() {
+    return service1Price + service2Price
+}
+allServicePrices = getAllServicePrices();
+
+function getFullPrice() {
+    return screenPrice + allServicePrices
+}
+fullPrice = getFullPrice();
+
+const getTitle = function() {
+    return title.trim().charAt(0).toLocaleUpperCase() + title.trim().slice(1).toLowerCase()
+}
+
+const getServicePercentPrice = function() {
+    return fullPrice - (fullPrice * (rollback/100))
+}
+servicePercentPrice = getServicePercentPrice();
+
+const getRollbackMessage = function() {
+    switch (true) {
+        case fullPrice >= 30000:
+            return 'You are eligible for 10% discount'
+        case fullPrice >= 15000:
+            return 'You are eligible for 5% discount'
+        case fullPrice < 15000:
+            return 'You are not eligible for discount'
+        default:
+            return 'Something went wrong'
+        }
+}
+
+
+showTypeOf(title);
+showTypeOf(screenPrice);
+showTypeOf(adaptive);
+console.log(getRollbackMessage());
+console.log(screens.split(''));
+console.log(servicePercentPrice);
