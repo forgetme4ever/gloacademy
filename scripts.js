@@ -34,18 +34,19 @@ const asking = function() {
 
 const getAllServicePrices = function() {
     let sum = 0;
-
     for (let i = 0; i < 2; i++) {
         if (i === 0) {
             service1 = prompt('Any extra services needed?');
         } else if (i === 1) {
             service2 = prompt('Any extra services needed?');
         }
-           
+    sum += (() => {
+        let n;
         do {
-            sum += +prompt('How much it will be cost?');   
-        }
-    while (!isNumber(sum))         
+            n = prompt('How much it will be cost?');
+        } while (!isNumber(n));
+            return +n;
+        })();    
     }
     return sum;
 };
