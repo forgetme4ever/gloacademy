@@ -1,40 +1,66 @@
 'use strict';
 
-const title = prompt("What is the name of your project?");
-const screens = prompt('What types of screens have to be developed', 'simple, complex or interactive');
-const screenPrice = +prompt('What is the price for this project?');
-const rollback = 30;
-const adaptive = confirm('Is adaptive needed');
-const service1 = prompt('Any extra services needed?');
-const service1Price = +prompt('How much it will be cost?', 'price in USD');
-const service2 = prompt('Any extra services needed?');
-const service2Price = +prompt('How much it will be cost?', 'price in USD');
+let title;
+let screens;
+let screenPrice;
+let adaptive;
 let servicePercentPrice;
 let fullPrice;
 let allServicePrices;
+let service1;
+let service2;
+const rollback = 30;
 
 const showTypeOf = function(variable) {
     console.log(variable, typeof variable);
 };
 
+const isNumber = function(num) {
+    return !isNaN(parseFloat(num)) && isFinite(num);
+}
+
+
+const asking = function() {
+    title = prompt("What is the name of your project?", "Layout calculator");
+    screens = prompt('What types of screens have to be developed', 'simple');
+
+    do {
+        screenPrice = +prompt('What is the price for this project?');
+    }
+    while (!isNumber(screenPrice))
+
+    adaptive = confirm('Is adaptive needed');
+}
+
 const getAllServicePrices = function() {
-    return service1Price + service2Price;
+    let sum = 0;
+
+    for (let i = 0; i < 2; i++) {
+        if (i === 0) {
+            service1 = prompt('Any extra services needed?');
+        } else if (i === 1) {
+            service2 = prompt('Any extra services needed?');
+        }
+           
+        do {
+            sum += +prompt('How much it will be cost?');   
+        }
+    while (!isNumber(sum))         
+    }
+    return sum;
 };
-allServicePrices = getAllServicePrices();
 
 function getFullPrice() {
     return screenPrice + allServicePrices;
-}
-fullPrice = getFullPrice();
+};
 
 const getTitle = function() {
     return title.trim().charAt(0).toLocaleUpperCase() + title.trim().slice(1).toLowerCase();
 };
 
 const getServicePercentPrice = function() {
-    return fullPrice - (fullPrice * (rollback/100))
+    return Math.ceil(fullPrice - (fullPrice * (rollback/100)))
 };
-servicePercentPrice = getServicePercentPrice();
 
 const getRollbackMessage = function() {
     switch (true) {
@@ -49,10 +75,17 @@ const getRollbackMessage = function() {
         }
 };
 
+asking();
+allServicePrices = getAllServicePrices();
+fullPrice = getFullPrice();
+servicePercentPrice = getServicePercentPrice();
+
 
 showTypeOf(title);
 showTypeOf(screenPrice);
 showTypeOf(adaptive);
+
+console.log('allServicePrices', allServicePrices);
 console.log(getRollbackMessage());
-console.log(screens.split(','));
+console.log(screens.trim().toLowerCase().split(','));
 console.log(servicePercentPrice);
