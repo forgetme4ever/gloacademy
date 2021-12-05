@@ -32,21 +32,24 @@ const asking = function() {
     adaptive = confirm('Is adaptive needed');
 }
 
+function getSum (msg, sum = 0) {
+    let n;
+    do {
+        n = prompt(msg);
+    } while (!isNumber(n));
+        return sum += +n;
+    }
+
 const getAllServicePrices = function() {
     let sum = 0;
+    
     for (let i = 0; i < 2; i++) {
         if (i === 0) {
             service1 = prompt('Any extra services needed?');
         } else if (i === 1) {
             service2 = prompt('Any extra services needed?');
         }
-    sum += (() => {
-        let n;
-        do {
-            n = prompt('How much it will be cost?');
-        } while (!isNumber(n));
-            return +n;
-        })();    
+        sum = getSum('How much it will be cost?', sum);
     }
     return sum;
 };
