@@ -14,20 +14,21 @@ const appData = {
     asking: function() {
         appData.title = prompt("What is the name of your project?", "Layout calculator");
         appData.screens = prompt('What types of screens have to be developed', 'simple');
-    
         do {
             appData.screenPrice = +prompt('What is the price for this project?');
         }
         while (!appData.isNumber(appData.screenPrice))
     
         appData.adaptive = confirm('Is adaptive needed');
-    },
 
+        
+    },
+    
     isNumber: function (num) {
         return !isNaN(parseFloat(num)) && isFinite(num);
     },
 
-    allServicePrices: function () {
+    getAllServicePrices: function () {
         let sum = 0;
         
         for (let i = 0; i < 2; i++) {
@@ -41,24 +42,26 @@ const appData = {
             do {
                 price = prompt('How much it will be cost?');
             } while (!appData.isNumber(price))
-            sum += +price
+            sum += +price;
         }
+        
         return sum;
+        
     },
 
-    fullPrice: function() {
-        return appData.screenPrice + appData.allServicePrices;
+    getFullPrice: function() {
+        return +appData.screenPrice + appData.allServicePrices;
     },
 
-    titleTrimmed: function() {
-        return appData.title.trim()[0].toLocaleUpperCase() + appData.title.trim().slice(1).toLowerCase();
-    },
+    getTitle: function(title) {
+        return appData.title.trim().charAt(0).toLocaleUpperCase() + appData.title.trim().slice(1).toLowerCase();
+        },
 
-    servicePercentPrice: function() {
+    getServicePercentPrice: function() {
         return Math.ceil(appData.fullPrice - (appData.fullPrice * (appData.rollback/100)))
     },
 
-    rollbackMessage: function() {
+    getRollbackMessage: function() {
         switch (true) {
         case appData.fullPrice >= 30000:
             return 'You are eligible for 10% discount';
@@ -70,29 +73,39 @@ const appData = {
             return 'Something went wrong';
         }
     },
-
+    
     start: function () {
         appData.asking();
-        appData.allServicePrices();
-        appData.fullPrice();
-        appData.servicePercentPrice();
-        appData.titleTrimmed();
+        appData.title = appData.getTitle();
+        appData.allServicePrices = appData.getAllServicePrices();
+        appData.fullPrice = appData.getFullPrice();
+        appData.servicePercentPrice = appData.getServicePercentPrice();
         appData.logger();
     },
 
     logger: function () {
+        appData.getRollbackMessage();
         for (let key in appData) {
-            console.log(`Key: ${key} value: ${appData[key]}`);
+            console.log(`Key: ${key} \nvalue: ${appData[key]}`);
         }
-    }
+    }, 
 };
 
+
+
 appData.start();
-// const isNumber = function(num) {
+
+
+// console.log(appData.allServicePrices);
+// console.log(appData.fullPrice);
+// console.log(appData.title);
+// console.log(appData.servicePercentPrice);
+// console.log(appData.screens);
+// console.log(appData.getRollbackMessage());
+
+//const isNumber = function(num) {
 //     return !isNaN(parseFloat(num)) && isFinite(num);
 // }
-
-
 
 
 // function getSum (msg, sum = 0) {
@@ -146,5 +159,3 @@ appData.start();
 // appData.fullPrice = getFullPrice();
 // appData.servicePercentPrice = getServicePercentPrice();
 
-// console.log(appData.fullPrice);
-// console.log(appData.servicePercentPrice);
