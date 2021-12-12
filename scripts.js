@@ -10,30 +10,29 @@ const appData = {
     allServicePrices: 0,
     services: {},
     rollback: 30,
+    isNumber: function (num) {
+        return !isNaN(parseFloat(num)) && isFinite(num);
+    },
+    
     asking: function() {
         do {
             appData.title = prompt('What is the name of your project?');
-        }
-        while (appData.isNumber(appData.title));
+        } while (!isNaN(appData.title));
 
         for (let i = 0; i < 2; i++) {
             let name = '';
             let price = 0;
             do {
                 name = prompt('What types of screens have to be developed?');
-            }
-            while (appData.isNumber(name));
-
+            } while (!isNaN(name));
             do {
-                price = +prompt('What is the price for this project?');
+                price = prompt('What is the price for this project?');
             }
             while (!appData.isNumber(price));
 
             appData.screens.push({id: i, name: name, price: price});
         }
         
-        
-
         for (let i = 0; i < 2; i++) {
             let name = '';
             let price = 0;
@@ -41,18 +40,16 @@ const appData = {
             do {
                 name = prompt('Any extra services needed?');
             }
-            while (appData.isNumber(name));
+            while (!isNaN(name));
            
             do {
                 price = prompt('How much it will be cost?');
-            } while (!appData.isNumber(price))
+            } while (!appData.isNumber(price));
             
             appData.services[name] = +price;
         };
 
-        appData.adaptive = confirm('Is adaptive needed');
-
-        
+        appData.adaptive = confirm('Is adaptive needed');       
     },
     
     addPrices: function () {
@@ -64,9 +61,7 @@ const appData = {
         }
     },
 
-    isNumber: function (num) {
-        return !isNaN(parseFloat(num)) && isFinite(num);
-    },
+    
 
     getFullPrice: function() {
         appData.fullPrice = +appData.screenPrice + appData.allServicePrices;
