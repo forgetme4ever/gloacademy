@@ -1,13 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/index.css">
+    <script src="./js/script.js" defer></script>
     <title>Document</title>
-    <script src="scripts.js"></script>
 </head>
+
 <body>
-    
+    <header>
+        <div class="container">
+            <h1 class="title" id="title">Layout calculator</h1>
+        </div>
+    </header>
+    <main class="main">
+        <div class="container">
+            <div class="main-box">
+                <div class="main-controls elements">
+                    <div class="main-controls__views element">
+                        <h3>Calculation by screen type</h3>
+                        <div class="main-controls__item screen">
+                            <div class="main-controls__select">
+                                <select name="views-select">
+                                    <option value="" selected>Screen type</option>
+                                    <option value="500">Simple 500$ * n</option>
+                                    <option value="700">Complex 700$ * n</option>
+                                    <option value="800">Interactive 800$ * n</option>
+                                    <option value="100">Form 100$ * n</option>
+                                    <option value="300">Sliders 300$ * n</option>
+                                    <option value="200">Modal window 200$ * n</option>
+                                    <option value="100">Block animation 100$ * n</option>
+                                </select>
+                            </div>
+                            <div class="main-controls__input">
+                                <input type="text" placeholder="number of screens">
+                            </div>
+                        </div>
+
+                        <button class="screen-btn">+</button>
+                    </div>
+                    <div class="main-controls__views element">
+                        <h3>Extra Service</h3>
+                        <div class="main-controls__item other-items percent">
+                            <div class="main-controls__checkbox">
+                                <input class="custom-checkbox" type="checkbox" name="" id="checkbox-1">
+                                <label for="checkbox-1">Tablet adaptation (%)</label>
+                            </div>
+                            <div class="main-controls__input">
+                                <input type="text" placeholder="10% from amount" value="10" disabled>
+                            </div>
+                        </div>
+                        <div class="main-controls__item  other-items percent">
+                            <div class="main-controls__checkbox">
+                                <input class="custom-checkbox" type="checkbox" name="" id="checkbox-2">
+                                <label for="checkbox-2">Mobile adaptation (%)</label>
+                            </div>
+                            <div class="main-controls__input">
+                                <input type="text" placeholder="20% from amount" value="20" disabled>
+                            </div>
+                        </div>
+                        <div class="main-controls__item other-items number">
+                            <div class="main-controls__checkbox">
+                                <input class="custom-checkbox" type="checkbox" name="" id="checkbox-3">
+                                <label for="checkbox-3">Yandex metric ($)</label>
+                            </div>
+                            <div class="main-controls__input">
+                                <input type="text" placeholder="Amount" value="300" disabled>
+                            </div>
+                        </div>
+                        <div class="main-controls__item other-items number">
+                            <div class="main-controls__checkbox">
+                                <input class="custom-checkbox" type="checkbox" name="" id="checkbox-4">
+                                <label for="checkbox-4">Google A. metric($)</label>
+                            </div>
+                            <div class="main-controls__input">
+                                <input type="text" placeholder="Amount" value="400" disabled>
+                            </div>
+                        </div>
+                        <div class="main-controls__item other-items number">
+                            <div class="main-controls__checkbox">
+                                <input class="custom-checkbox" type="checkbox" name="" id="checkbox-5">
+                                <label for="checkbox-5">Forms ($)</label>
+                            </div>
+                            <div class="main-controls__input">
+                                <input type="text" placeholder="Amount" value="200" disabled>
+                            </div>
+                        </div>
+                        <div class="main-controls__item other-items number">
+                            <div class="main-controls__checkbox">
+                                <input class="custom-checkbox" type="checkbox" name="" id="checkbox-6">
+                                <label for="checkbox-6">Upload to server ($)</label>
+                            </div>
+                            <div class="main-controls__input">
+                                <input type="text" placeholder="Amount" value="300" disabled>
+                            </div>
+                        </div>
+                        <div class="main-controls__item other-items number">
+                            <div class="main-controls__checkbox">
+                                <input class="custom-checkbox" type="checkbox" name="" id="checkbox-7">
+                                <label for="checkbox-7">Testing ($)</label>
+                            </div>
+                            <div class="main-controls__input">
+                                <input type="text" placeholder="Amount" value="300" disabled>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="main-controls__views cms">
+                        <div class="main-controls__item">
+                            <div class="main-controls__checkbox">
+                                <input class="custom-checkbox" type="checkbox" name="" id="cms-open">
+                                <label for="cms-open">CMS</label>
+                            </div>
+                        </div>
+
+                        <div class="main-controls__item hidden-cms-variants" style="display: none;">
+                            <div class="main-controls__select">
+                                <select name="views-select" id="cms-select">
+                                    <option value="" selected>CMS type</option>
+                                    <option value="50">WordPress</option>
+                                    <option value="other">Others</option>
+                                </select>
+                            </div>
+                            <div class="main-controls__input" style="display: none;">
+                                <input id="cms-other-input" type="text" placeholder="% amount for develop">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="main-controls__views element">
+                        <h3>Brokers fee</h3>
+                        <div class="main-controls__item rollback">
+                            <div class="main-controls__range">
+                                <input type="range" step="1" min="0" max="100" value="0">
+                                <span class="range-value">0%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="main-total">
+                    <div class="main-total__items">
+                        <h3>Total</h3>
+                        <div class="main-total__item">
+                            <label for="total">Price for landing</label>
+                            <input class="total-input" type="text" disabled id="total" value="0">
+                        </div>
+                        <div class="main-total__item">
+                            <label for="total-count">Screens quantity</label>
+                            <input class="total-input" type="text" disabled id="total-count" value="0">
+                        </div>
+                        <div class="main-total__item">
+                            <label for="total-count-other">Price for extra services</label>
+                            <input class="total-input" type="text" disabled id="total-count-other" value="0">
+                        </div>
+                        <div class="main-total__item">
+                            <label for="total-full-count">Total amount</label>
+                            <input class="total-input" type="text" disabled id="total-full-count" value="0">
+                        </div>
+                        <div class="main-total__item">
+                            <label for="total-count-rollback">Price with brokers fee</label>
+                            <input class="total-input" type="text" disabled id="total-count-rollback" value="0">
+                        </div>
+                    </div>
+
+                    <div class="main-total__buttons">
+                        <button class="handler_btn" id="start">Calculate</button>
+                        <button class="handler_btn" id="reset" style="display: none;">Reset</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 </body>
+
 </html>
