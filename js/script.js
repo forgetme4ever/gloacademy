@@ -18,7 +18,7 @@ const totalOther = document.getElementsByClassName('total-input')[2];
 const totalFull = document.getElementsByClassName('total-input')[3];
 const totalRollback = document.getElementsByClassName('total-input')[4];
 
-let screen = document.querySelectorAll('.screen');
+let screens = document.querySelectorAll('.screen');
 
 
 const appData = {
@@ -57,13 +57,12 @@ const appData = {
     isError: false,
     checkValues: function () {
         appData.isError = false;
-        screen = document.querySelectorAll('.screen');
-
-        screen.forEach(screen => {
+        
+        screens.forEach(screen => {
             const select = screen.querySelector('select');
             const input = screen.querySelector('input[type=text]');
 
-            if(select.value === '' || input.value === '0') {
+            if(select.value === '' || input.value === '') {
                 appData.isError = true;
             };    
         });
@@ -82,16 +81,12 @@ const appData = {
         totalRollback.value = appData.servicePercentPrice;
         
     },
-    addScreens: function () {
-        const count = 0;
-        screen = document.querySelectorAll('.screen');
-        
-        screen.forEach(function(screen, index) {
-            
+    addScreens: function () {               
+        screens.forEach(function(screen, index) {  
             const select = screen.querySelector('select');
             const input = screen.querySelector('input');
             const selectName = select.options[select.selectedIndex].textContent;
-            
+                      
             appData.screens.push({
                 id: index, 
                 name: selectName, 
@@ -101,8 +96,10 @@ const appData = {
         });      
     },
     addScreenBlock: function () {
-        const cloneScreen = screen[0].cloneNode(true);
-        screen[screen.length - 1].after(cloneScreen);
+        const cloneScreen = screens[0].cloneNode(true);
+        cloneScreen.querySelector('input').value = '';
+        screens[screens.length - 1].after(cloneScreen);   
+        screens = document.querySelectorAll('.screen');
     },
     addServices: function() {
         otherItemsPercent.forEach(function(item) {
